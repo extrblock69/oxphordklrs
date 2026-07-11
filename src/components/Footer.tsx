@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { GraduationCap, Mail, Phone, MapPin, Heart } from "lucide-react";
 
 interface FooterProps {
@@ -6,6 +6,8 @@ interface FooterProps {
 }
 
 export default function Footer({ onNavigate }: FooterProps) {
+  const [logoSrc, setLogoSrc] = useState("https://docs.google.com/uc?export=download&id=1zlUYcwbNYHWt6zZ1n9cwZ_LyOY9k8FQT");
+
   return (
     <footer id="app-footer" className="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-900">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
@@ -15,9 +17,10 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div className="flex items-center space-x-2.5 cursor-pointer" onClick={() => onNavigate("home")}>
             <div className="transform transition-transform hover:scale-105 duration-300 w-12 h-12 rounded-full border border-slate-800 overflow-hidden bg-white shadow-sm flex items-center justify-center p-0.5">
               <img 
-                src="/logo.png" 
+                src={logoSrc} 
                 alt="Oxford Logo" 
                 className="w-full h-full object-contain rounded-full" 
+                onError={() => setLogoSrc("/logo.png")}
                 referrerPolicy="no-referrer" 
               />
             </div>
