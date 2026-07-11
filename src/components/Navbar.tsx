@@ -29,7 +29,7 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
     { label: "Notice Board", id: "announcements" },
     { label: "Events", id: "calendar" },
     { label: "Contact Us", id: "contact" },
-    { label: "AI Counselor", id: "chat", icon: <Bot className="w-3.5 h-3.5 mr-1 text-amber-400" /> },
+    { label: "AI Counselor", id: "chat", icon: <Bot className="w-4 h-4 mr-1 text-blue-800" /> },
   ];
 
   const handleItemClick = (id: string) => {
@@ -42,7 +42,7 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
       id="app-navbar"
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-[#090D1A]/95 backdrop-blur-md border-b border-white/10 shadow-xl py-3"
+          ? "bg-white/95 backdrop-blur-md shadow-md py-3 border-b border-slate-100"
           : "bg-transparent py-5"
       }`}
     >
@@ -53,9 +53,9 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
           onClick={() => handleItemClick("home")}
-          className="flex items-center space-x-3 cursor-pointer group"
+          className="flex items-center space-x-2.5 cursor-pointer group"
         >
-          <div className="transform transition-transform group-hover:scale-105 duration-300 w-10 h-10 rounded-full border border-white/10 overflow-hidden bg-white/5 backdrop-blur-sm flex items-center justify-center p-0.5">
+          <div className="transform transition-transform group-hover:scale-105 duration-300 w-12 h-12 rounded-full border border-slate-100 overflow-hidden bg-white shadow-sm flex items-center justify-center p-0.5">
             <img 
               src={logoSrc} 
               alt="Oxford Logo" 
@@ -65,11 +65,14 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
             />
           </div>
           <div>
-            <h1 className="font-sans text-xs sm:text-sm font-bold tracking-[0.18em] text-white uppercase flex items-center">
-              OXFORD ENGLISH SCHOOL
+            <h1 className="font-display text-lg sm:text-xl font-extrabold tracking-tight text-blue-950 flex items-center">
+              OXFORD
+              <span className="text-blue-900 font-bold text-[10px] ml-1.5 bg-blue-50 px-2 py-0.5 rounded-md border border-blue-100 uppercase tracking-wider font-sans">
+                English H.S. School
+              </span>
             </h1>
-            <p className="text-[9px] uppercase tracking-[0.25em] text-amber-500/90 font-sans font-medium mt-0.5">
-              KAILARAS • ESTD. 1996
+            <p className="text-[9px] uppercase tracking-wider text-blue-800/80 font-mono font-bold">
+              KAILARAS • Education For A Better Life
             </p>
           </div>
         </motion.div>
@@ -82,10 +85,10 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
                 <button
                   id={`nav-${item.id}`}
                   onClick={() => handleItemClick(item.id)}
-                  className={`relative font-sans text-xs font-semibold tracking-widest uppercase transition-colors py-2 px-1 flex items-center cursor-pointer ${
+                  className={`relative font-sans text-sm font-semibold transition-colors py-2 px-1 flex items-center cursor-pointer ${
                     activeSection === item.id
-                      ? "text-amber-400"
-                      : "text-slate-300 hover:text-white"
+                      ? "text-blue-900"
+                      : "text-slate-600 hover:text-blue-900"
                   }`}
                 >
                   {item.icon}
@@ -93,7 +96,7 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
                   {activeSection === item.id && (
                     <motion.div
                       layoutId="activeIndicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-500"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-900 to-indigo-800 rounded-full"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -107,8 +110,9 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             onClick={onOpenApplication}
-            className="font-sans bg-transparent border border-white/30 hover:border-white text-white text-xs font-semibold tracking-[0.15em] uppercase px-5 py-2.5 rounded-none transition-all duration-300 hover:bg-white/5 cursor-pointer"
+            className="font-sans bg-blue-950 hover:bg-blue-900 text-white text-xs font-bold px-4.5 py-2.5 rounded-full transition-shadow hover:shadow-lg hover:shadow-blue-900/10 flex items-center space-x-1.5 cursor-pointer border border-blue-900/40"
           >
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
             <span>Apply Portal</span>
           </motion.button>
         </div>
@@ -118,16 +122,16 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={onOpenApplication}
-            className="bg-transparent border border-white/30 text-white text-[10px] tracking-wider uppercase font-bold px-3 py-1.5 rounded-none cursor-pointer"
+            className="bg-blue-950 text-white text-[11px] font-bold px-3 py-2 rounded-full cursor-pointer"
           >
             Apply
           </motion.button>
           <button
             id="mobile-menu-toggle"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-1.5 text-white hover:text-slate-200 bg-white/5 hover:bg-white/10 border border-white/10 rounded-none transition-colors cursor-pointer"
+            className="p-1.5 text-blue-950 hover:text-blue-800 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors cursor-pointer"
           >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
@@ -141,7 +145,7 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-[#090D1A]/98 border-b border-white/10 overflow-hidden"
+            className="md:hidden bg-white border-b border-slate-100 overflow-hidden"
           >
             <div className="px-6 py-4 space-y-4">
               <ul className="space-y-3">
@@ -150,10 +154,10 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
                     <button
                       id={`mobile-nav-${item.id}`}
                       onClick={() => handleItemClick(item.id)}
-                      className={`w-full text-left font-sans text-xs tracking-wider uppercase font-semibold py-2 px-3 rounded-none flex items-center transition-colors ${
+                      className={`w-full text-left font-sans text-sm font-bold py-2 px-3 rounded-lg flex items-center ${
                         activeSection === item.id
-                          ? "bg-white/10 text-amber-400 border-l-2 border-amber-500 pl-2.5"
-                          : "text-slate-300 hover:bg-white/5"
+                          ? "bg-blue-50 text-blue-900"
+                          : "text-slate-600 hover:bg-slate-50"
                       }`}
                     >
                       {item.icon}
@@ -162,14 +166,14 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
                   </li>
                 ))}
               </ul>
-              <div className="pt-2 border-t border-white/10">
+              <div className="pt-2 border-t border-slate-100">
                 <button
                   id="mobile-nav-apply"
                   onClick={() => {
                     setIsMobileMenuOpen(false);
                     onOpenApplication();
                   }}
-                  className="w-full text-center bg-transparent border border-white/20 text-white py-2.5 rounded-none text-xs tracking-widest uppercase font-semibold hover:bg-white/5 transition-colors"
+                  className="w-full text-center bg-gradient-to-r from-blue-900 to-indigo-950 text-white py-2.5 rounded-xl text-sm font-bold shadow-md shadow-blue-900/10"
                 >
                   Enter Application Portal
                 </button>
