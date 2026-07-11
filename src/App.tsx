@@ -204,7 +204,7 @@ export default function App() {
       />
 
       {/* Main Pages Stack */}
-      <main className="space-y-0 overflow-hidden">
+      <main className="space-y-0">
         
         {/* Hero Section */}
         <Hero
@@ -212,100 +212,36 @@ export default function App() {
           onOpenApplication={handleOpenApplyPortal}
         />
 
-        {/* Scroll Animating Landing Sections */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-120px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {/* About Section */}
-          <AboutSection />
-        </motion.div>
+        {/* About Section */}
+        <AboutSection />
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-120px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {/* Statistics subsection */}
-          <SchoolStats />
-        </motion.div>
+        {/* Statistics subsection */}
+        <SchoolStats />
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-120px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {/* Academics Showcase */}
-          <Academics />
-        </motion.div>
+        {/* Academics Showcase */}
+        <Academics />
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-120px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {/* Campus Life and Facilities */}
-          <CampusLife />
-        </motion.div>
+        {/* Campus Life and Facilities */}
+        <CampusLife />
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-120px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {/* Why Choose Us */}
-          <WhyChooseUs />
-        </motion.div>
+        {/* Why Choose Us */}
+        <WhyChooseUs />
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-120px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {/* Student Showcase */}
-          <StudentShowcase />
-        </motion.div>
+        {/* Student Showcase */}
+        <StudentShowcase />
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-120px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {/* Top Faculties */}
-          <TopFaculties />
-        </motion.div>
+        {/* Top Faculties */}
+        <TopFaculties />
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-120px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {/* Achievements Stack */}
-          <AchievementsStack />
-        </motion.div>
+        {/* Achievements Stack */}
+        <AchievementsStack />
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-120px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {/* Admissions, Estimator, and application Submission */}
-          <Admissions
-            applications={applications}
-            onSubmitApplication={handleAddApplication}
-            isPortalOpen={activeSection === "admissions"}
-          />
-        </motion.div>
+        {/* Admissions, Estimator, and application Submission */}
+        <Admissions
+          applications={applications}
+          onSubmitApplication={handleAddApplication}
+          isPortalOpen={activeSection === "admissions"}
+        />
 
         {/* Application Live Tracker Monitoring Dashboard */}
         <section className="py-12 bg-white border-y border-slate-100">

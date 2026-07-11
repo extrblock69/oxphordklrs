@@ -55,9 +55,7 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
           onClick={() => handleItemClick("home")}
           className="flex items-center space-x-2.5 cursor-pointer group"
         >
-          <div className={`transform transition-transform group-hover:scale-105 duration-300 w-12 h-12 rounded-full border overflow-hidden bg-white shadow-sm flex items-center justify-center p-0.5 ${
-            isScrolled ? "border-slate-100" : "border-white/20"
-          }`}>
+          <div className="transform transition-transform group-hover:scale-105 duration-300 w-12 h-12 rounded-full border border-slate-100 overflow-hidden bg-white shadow-sm flex items-center justify-center p-0.5">
             <img 
               src={logoSrc} 
               alt="Oxford Logo" 
@@ -67,21 +65,13 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
             />
           </div>
           <div>
-            <h1 className={`font-display text-lg sm:text-xl font-extrabold tracking-tight flex items-center transition-colors duration-300 ${
-              isScrolled ? "text-blue-950" : "text-white"
-            }`}>
+            <h1 className="font-display text-lg sm:text-xl font-extrabold tracking-tight text-blue-950 flex items-center">
               OXFORD
-              <span className={`font-bold text-[10px] ml-1.5 px-2 py-0.5 rounded-md border uppercase tracking-wider font-sans transition-all ${
-                isScrolled 
-                  ? "text-blue-900 bg-blue-50 border-blue-100" 
-                  : "text-blue-200 bg-white/10 border-white/20"
-              }`}>
+              <span className="text-blue-900 font-bold text-[10px] ml-1.5 bg-blue-50 px-2 py-0.5 rounded-md border border-blue-100 uppercase tracking-wider font-sans">
                 English H.S. School
               </span>
             </h1>
-            <p className={`text-[9px] uppercase tracking-wider font-mono font-bold transition-colors duration-300 ${
-              isScrolled ? "text-blue-800/80" : "text-blue-200/80"
-            }`}>
+            <p className="text-[9px] uppercase tracking-wider text-blue-800/80 font-mono font-bold">
               KAILARAS • Education For A Better Life
             </p>
           </div>
@@ -97,20 +87,16 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
                   onClick={() => handleItemClick(item.id)}
                   className={`relative font-sans text-sm font-semibold transition-colors py-2 px-1 flex items-center cursor-pointer ${
                     activeSection === item.id
-                      ? (isScrolled ? "text-blue-950" : "text-white")
-                      : (isScrolled ? "text-slate-600 hover:text-blue-950" : "text-slate-300 hover:text-white")
+                      ? "text-blue-900"
+                      : "text-slate-600 hover:text-blue-900"
                   }`}
                 >
-                  {item.icon && React.cloneElement(item.icon as React.ReactElement, {
-                    className: `w-4 h-4 mr-1 ${isScrolled ? "text-blue-800" : "text-blue-400"}`
-                  })}
+                  {item.icon}
                   {item.label}
                   {activeSection === item.id && (
                     <motion.div
                       layoutId="activeIndicator"
-                      className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full ${
-                        isScrolled ? "bg-gradient-to-r from-blue-900 to-indigo-800" : "bg-gradient-to-r from-blue-400 to-sky-300"
-                      }`}
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-900 to-indigo-800 rounded-full"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -124,13 +110,9 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             onClick={onOpenApplication}
-            className={`font-sans text-xs font-bold px-5 py-2.5 rounded-full transition-all flex items-center space-x-1.5 cursor-pointer border ${
-              isScrolled
-                ? "bg-blue-950 hover:bg-blue-900 text-white border-blue-900/40 shadow-lg shadow-blue-950/10"
-                : "bg-white hover:bg-slate-50 text-blue-950 border-white/10 shadow-xl"
-            }`}
+            className="font-sans bg-blue-950 hover:bg-blue-900 text-white text-xs font-bold px-4.5 py-2.5 rounded-full transition-shadow hover:shadow-lg hover:shadow-blue-900/10 flex items-center space-x-1.5 cursor-pointer border border-blue-900/40"
           >
-            <Sparkles className={`w-3.5 h-3.5 ${isScrolled ? "text-amber-400" : "text-blue-600"}`} />
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
             <span>Apply Portal</span>
           </motion.button>
         </div>
@@ -140,20 +122,14 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={onOpenApplication}
-            className={`text-[11px] font-bold px-3 py-2 rounded-full cursor-pointer ${
-              isScrolled ? "bg-blue-950 text-white" : "bg-white text-blue-950 shadow-sm"
-            }`}
+            className="bg-blue-950 text-white text-[11px] font-bold px-3 py-2 rounded-full cursor-pointer"
           >
             Apply
           </motion.button>
           <button
             id="mobile-menu-toggle"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-              isScrolled 
-                ? "text-blue-950 hover:text-blue-800 bg-slate-100 hover:bg-slate-200" 
-                : "text-white hover:text-blue-200 bg-white/10 hover:bg-white/20"
-            }`}
+            className="p-1.5 text-blue-950 hover:text-blue-800 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors cursor-pointer"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>

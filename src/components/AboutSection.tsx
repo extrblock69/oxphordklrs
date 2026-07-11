@@ -108,31 +108,21 @@ export default function AboutSection() {
           <div className="lg:col-span-7 space-y-8">
             
             {/* Tab Buttons */}
-            <div className="flex p-1.5 bg-slate-100 rounded-2xl gap-1 relative z-10">
-              {(["who", "legacy", "values"] as const).map((tab) => {
-                const isActive = activeTab === tab;
-                return (
-                  <button
-                    id={`about-tab-${tab}`}
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className="flex-1 py-3 px-4 rounded-xl text-xs font-bold tracking-wider uppercase transition-colors relative cursor-pointer focus:outline-none"
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeAboutTab"
-                        className="absolute inset-0 bg-white rounded-xl shadow-md border-b border-slate-200/50"
-                        transition={{ type: "spring", stiffness: 350, damping: 28 }}
-                      />
-                    )}
-                    <span className={`relative z-10 transition-colors duration-300 ${
-                      isActive ? "text-blue-950 font-extrabold" : "text-slate-500 hover:text-slate-800"
-                    }`}>
-                      {tab === "who" ? "About School" : tab === "legacy" ? "Our Legacy" : "Core Values"}
-                    </span>
-                  </button>
-                );
-              })}
+            <div className="flex p-1.5 bg-slate-100 rounded-2xl gap-1">
+              {(["who", "legacy", "values"] as const).map((tab) => (
+                <button
+                  id={`about-tab-${tab}`}
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`flex-1 py-3 px-4 rounded-xl text-xs font-black tracking-wider uppercase transition-all cursor-pointer ${
+                    activeTab === tab
+                      ? "bg-white text-blue-950 shadow-md border-b border-slate-100"
+                      : "text-slate-500 hover:text-slate-800"
+                  }`}
+                >
+                  {tab === "who" ? "About School" : tab === "legacy" ? "Our Legacy" : "Core Values"}
+                </button>
+              ))}
             </div>
 
             {/* Tab Panel */}
