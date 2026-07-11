@@ -1,5 +1,5 @@
 {
-  "name": "Oxford HS School Kailaras",
+  "name": "Oxford English Higher Secondary School, Kailaras",
   "description": "The official modern web portal for Oxford English H.S. School in Kailaras, featuring an interactive AI admissions counselor, dynamic financial aid estimator, and beautiful animated transitions.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
