@@ -18,10 +18,34 @@ import ContactSection from "./components/ContactSection";
 import AICounselor from "./components/AICounselor";
 import Footer from "./components/Footer";
 import ScrollReveal from "./components/ScrollReveal";
+import LineSidebar from "./components/LineSidebar";
 import { StudentApplication, Message } from "./types";
+import Preloader from "./components/Preloader";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
+
+  // Preloader state
+  const [loading, setLoading] = useState(true);
+
+  // Theme state (light / dark)
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    const saved = localStorage.getItem("oxford_theme") as "light" | "dark" | null;
+    return saved || "light";
+  });
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("oxford_theme", theme);
+  }, [theme]);
+
+  const handleToggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
   
   // Applications list state with local storage persistence
   const [applications, setApplications] = useState<StudentApplication[]>(() => {
@@ -211,13 +235,59 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 selection:bg-blue-900 selection:text-white antialiased">
+    <>
+      {/* AnimatePresence for Oxford School Premium Loading Sequence */}
+      <AnimatePresence mode="wait">
+        {loading && (
+          <motion.div
+            key="preloader"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }}
+            className="fixed inset-0 z-50 pointer-events-auto"
+          >
+            <Preloader onComplete={() => setLoading(false)} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="min-h-screen bg-slate-50 text-slate-800 selection:bg-blue-900 selection:text-white antialiased transition-colors duration-200">
       
+      {/* Floating Desktop Quick-Links Navigation Rail */}
+      <div className="hidden xl:flex fixed left-6 top-1/2 -translate-y-1/2 z-40 bg-white/80 dark:bg-[#111b36]/85 backdrop-blur-md border border-slate-200/60 dark:border-slate-800/80 p-5 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/50 flex-col items-start w-48 pointer-events-auto transition-colors duration-200">
+        <div className="mb-3 pb-2 border-b border-slate-100 dark:border-slate-800/80 w-full">
+          <p className="text-[10px] font-black uppercase tracking-widest text-blue-900 dark:text-blue-300 font-mono">Quick Navigation</p>
+          <p className="text-[9px] text-slate-400 dark:text-slate-500 font-bold">Oxford School • Kailaras</p>
+        </div>
+        <LineSidebar
+          items={["Home", "About", "Academics", "Admissions", "Notice Board", "Events", "Contact Us", "AI Counselor"]}
+          activeItemIndex={["home", "about", "academics", "admissions", "announcements", "calendar", "contact", "chat"].indexOf(activeSection)}
+          accentColor={theme === "dark" ? "#60a5fa" : "#1e3a8a"}
+          textColor={theme === "dark" ? "#94a3b8" : "#475569"}
+          markerColor={theme === "dark" ? "#334155" : "#cbd5e1"}
+          showIndex={true}
+          showMarker={true}
+          proximityRadius={100}
+          maxShift={10}
+          falloff="smooth"
+          fontSize={0.75}
+          itemGap={10}
+          onItemClick={(index) => {
+            const sectionIds = ["home", "about", "academics", "admissions", "announcements", "calendar", "contact", "chat"];
+            const targetId = sectionIds[index];
+            if (targetId) {
+              handleNavigate(targetId);
+            }
+          }}
+        />
+      </div>
+
       {/* Top Navbar */}
       <Navbar
         onNavigate={handleNavigate}
         activeSection={activeSection}
         onOpenApplication={handleOpenApplyPortal}
+        theme={theme}
+        onToggleTheme={handleToggleTheme}
       />
 
       {/* Main Pages Stack */}
@@ -425,5 +495,6 @@ export default function App() {
       <Footer onNavigate={handleNavigate} />
 
     </div>
+    </>
   );
 }

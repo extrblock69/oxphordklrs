@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { GraduationCap, Menu, X, Bot, Sparkles, BookOpen } from "lucide-react";
+import { GraduationCap, Menu, X, Bot, Sparkles, BookOpen, Sun, Moon } from "lucide-react";
+import LineSidebar from "./LineSidebar";
 
 interface NavbarProps {
   onNavigate: (sectionId: string) => void;
   activeSection: string;
   onOpenApplication: () => void;
+  theme?: "light" | "dark";
+  onToggleTheme?: () => void;
 }
 
-export default function Navbar({ onNavigate, activeSection, onOpenApplication }: NavbarProps) {
+export default function Navbar({ onNavigate, activeSection, onOpenApplication, theme = "light", onToggleTheme }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [logoSrc, setLogoSrc] = useState("https://docs.google.com/uc?export=download&id=1zlUYcwbNYHWt6zZ1n9cwZ_LyOY9k8FQT");
@@ -36,6 +39,8 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
     onNavigate(id);
     setIsMobileMenuOpen(false);
   };
+
+  const activeItemIndex = navItems.findIndex((item) => item.id === activeSection);
 
   return (
     <nav
@@ -106,6 +111,16 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
           </ul>
 
           <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={onToggleTheme}
+            className="p-2 rounded-full border border-slate-200/60 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer mr-3 flex items-center justify-center w-9 h-9"
+            aria-label="Toggle Theme"
+          >
+            {theme === "dark" ? <Sun className="w-4.5 h-4.5 text-amber-400" /> : <Moon className="w-4.5 h-4.5 text-slate-700" />}
+          </motion.button>
+
+          <motion.button
             id="navbar-apply-btn"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
@@ -118,7 +133,15 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
         </div>
 
         {/* Mobile Hamburger Toggle */}
-        <div className="md:hidden flex items-center space-x-3">
+        <div className="md:hidden flex items-center space-x-2">
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={onToggleTheme}
+            className="p-1.5 rounded-lg border border-slate-200/60 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer flex items-center justify-center w-8 h-8"
+            aria-label="Toggle Theme"
+          >
+            {theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
+          </motion.button>
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={onOpenApplication}
@@ -148,24 +171,28 @@ export default function Navbar({ onNavigate, activeSection, onOpenApplication }:
             className="md:hidden bg-white border-b border-slate-100 overflow-hidden"
           >
             <div className="px-6 py-4 space-y-4">
-              <ul className="space-y-3">
-                {navItems.map((item) => (
-                  <li key={item.id}>
-                    <button
-                      id={`mobile-nav-${item.id}`}
-                      onClick={() => handleItemClick(item.id)}
-                      className={`w-full text-left font-sans text-sm font-bold py-2 px-3 rounded-lg flex items-center ${
-                        activeSection === item.id
-                          ? "bg-blue-50 text-blue-900"
-                          : "text-slate-600 hover:bg-slate-50"
-                      }`}
-                    >
-                      {item.icon}
-                      <span className="ml-1.5">{item.label}</span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
+              <div className="py-2 border-b border-slate-100 dark:border-slate-800/80 pb-4">
+                <LineSidebar
+                  items={navItems.map((item) => item.label)}
+                  accentColor={theme === "dark" ? "#60a5fa" : "#1e3a8a"}
+                  textColor={theme === "dark" ? "#94a3b8" : "#475569"}
+                  markerColor={theme === "dark" ? "#334155" : "#cbd5e1"}
+                  showIndex={true}
+                  showMarker={true}
+                  proximityRadius={140}
+                  maxShift={18}
+                  falloff="smooth"
+                  fontSize={0.9}
+                  itemGap={10}
+                  activeItemIndex={activeItemIndex !== -1 ? activeItemIndex : 0}
+                  onItemClick={(index) => {
+                    const selectedItem = navItems[index];
+                    if (selectedItem) {
+                      handleItemClick(selectedItem.id);
+                    }
+                  }}
+                />
+              </div>
               <div className="pt-2 border-t border-slate-100">
                 <button
                   id="mobile-nav-apply"

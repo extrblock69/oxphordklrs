@@ -7,3 +7,160 @@
   --font-display: "Space Grotesk", sans-serif;
 }
 
+/* Oxford School Premium Dark Mode Configuration */
+.dark body {
+  background-color: #0b0f19 !important;
+  color: #cbd5e1 !important;
+}
+
+/* Deep slate background replacements */
+.dark .bg-slate-50,
+.dark .bg-slate-100/50,
+.dark .bg-gray-50,
+.dark .bg-slate-100 {
+  background-color: #0b1329 !important;
+}
+
+/* Card backgrounds */
+.dark .bg-white {
+  background-color: #111b36 !important;
+}
+
+/* Transparent overlays */
+.dark .bg-white\/80 {
+  background-color: rgba(17, 27, 54, 0.85) !important;
+}
+
+.dark .bg-slate-50\/80 {
+  background-color: rgba(11, 19, 41, 0.8) !important;
+}
+
+.dark .bg-blue-50 {
+  background-color: #172554 !important;
+}
+
+/* Border replacements */
+.dark .border-slate-100,
+.dark .border-slate-200,
+.dark .border-slate-200\/60,
+.dark .border-slate-200\/40,
+.dark .border-gray-100,
+.dark .border-gray-200,
+.dark .border-slate-300 {
+  border-color: #1e2942 !important;
+}
+
+/* Text replacement rules */
+.dark .text-slate-900,
+.dark .text-slate-800,
+.dark .text-gray-900,
+.dark .text-gray-800 {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-slate-700,
+.dark .text-slate-600,
+.dark .text-gray-600,
+.dark .text-gray-700 {
+  color: #94a3b8 !important;
+}
+
+.dark .text-slate-500,
+.dark .text-slate-400,
+.dark .text-gray-500 {
+  color: #64748b !important;
+}
+
+/* Accent text */
+.dark .text-blue-900,
+.dark .text-blue-950,
+.dark .text-indigo-900 {
+  color: #93c5fd !important;
+}
+
+/* Dark mode inputs and form controls */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #0f172a !important;
+  color: #f1f5f9 !important;
+  border-color: #334155 !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Hover background changes */
+.dark .hover\:bg-slate-50:hover,
+.dark .hover\:bg-gray-50:hover {
+  background-color: #1e2942 !important;
+}
+
+/* High contrast shadows */
+.dark .shadow-xl,
+.dark .shadow-2xl,
+.dark .shadow-lg,
+.dark .shadow-md {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Oxford School Premium Animated Preloader Styling */
+@keyframes preloaderPathFill {
+  0% {
+    opacity: 0;
+    fill-opacity: 0;
+    transform: scale(0.93) translateY(12px);
+  }
+  20% {
+    opacity: 0.7;
+    fill-opacity: 0;
+  }
+  60% {
+    fill-opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+    fill-opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.oxford-preloader-svg svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.oxford-preloader-svg svg path {
+  animation: preloaderPathFill 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: center;
+  will-change: opacity, fill-opacity, transform;
+}
+
+/* Organic staggered delays for school emblem paths */
+.oxford-preloader-svg svg path:nth-child(3n) {
+  animation-delay: 75ms;
+}
+.oxford-preloader-svg svg path:nth-child(4n) {
+  animation-delay: 150ms;
+}
+.oxford-preloader-svg svg path:nth-child(5n) {
+  animation-delay: 250ms;
+}
+.oxford-preloader-svg svg path:nth-child(7n) {
+  animation-delay: 375ms;
+}
+.oxford-preloader-svg svg path:nth-child(11n) {
+  animation-delay: 500ms;
+}
+.oxford-preloader-svg svg path:nth-child(13n) {
+  animation-delay: 620ms;
+}
+.oxford-preloader-svg svg path:nth-child(17n) {
+  animation-delay: 750ms;
+}
+
+
+
