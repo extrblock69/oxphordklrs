@@ -235,22 +235,24 @@ export default function App() {
   };
 
   return (
-    <>
-      {/* AnimatePresence for Oxford School Premium Loading Sequence */}
-      <AnimatePresence mode="wait">
-        {loading && (
-          <motion.div
-            key="preloader"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }}
-            className="fixed inset-0 z-50 pointer-events-auto"
-          >
-            <Preloader onComplete={() => setLoading(false)} />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div className="min-h-screen bg-slate-50 text-slate-800 selection:bg-blue-900 selection:text-white antialiased transition-colors duration-200">
+    <AnimatePresence mode="wait">
+      {loading ? (
+        <motion.div
+          key="preloader"
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }}
+          className="fixed inset-0 z-50 pointer-events-auto"
+        >
+          <Preloader onComplete={() => setLoading(false)} />
+        </motion.div>
+      ) : (
+        <motion.div
+          key="main-app"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="min-h-screen bg-slate-50 text-slate-800 selection:bg-blue-900 selection:text-white antialiased transition-colors duration-200"
+        >
       
       {/* Floating Desktop Quick-Links Navigation Rail */}
       <div className="hidden xl:flex fixed left-6 top-1/2 -translate-y-1/2 z-40 bg-white/80 dark:bg-[#111b36]/85 backdrop-blur-md border border-slate-200/60 dark:border-slate-800/80 p-5 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/50 flex-col items-start w-48 pointer-events-auto transition-colors duration-200">
@@ -494,7 +496,8 @@ export default function App() {
       {/* Footer */}
       <Footer onNavigate={handleNavigate} />
 
-    </div>
-    </>
+    </motion.div>
+    )}
+    </AnimatePresence>
   );
 }

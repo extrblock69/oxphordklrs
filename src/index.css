@@ -107,59 +107,11 @@
 }
 
 /* Oxford School Premium Animated Preloader Styling */
-@keyframes preloaderPathFill {
-  0% {
-    opacity: 0;
-    fill-opacity: 0;
-    transform: scale(0.93) translateY(12px);
-  }
-  20% {
-    opacity: 0.7;
-    fill-opacity: 0;
-  }
-  60% {
-    fill-opacity: 0.4;
-  }
-  100% {
-    opacity: 1;
-    fill-opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.oxford-preloader-svg svg {
+.oxford-preloader-svg-unfilled svg,
+.oxford-preloader-svg-filled svg {
   width: 100% !important;
   height: 100% !important;
   display: block;
-}
-
-.oxford-preloader-svg svg path {
-  animation: preloaderPathFill 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;
-  transform-origin: center;
-  will-change: opacity, fill-opacity, transform;
-}
-
-/* Organic staggered delays for school emblem paths */
-.oxford-preloader-svg svg path:nth-child(3n) {
-  animation-delay: 75ms;
-}
-.oxford-preloader-svg svg path:nth-child(4n) {
-  animation-delay: 150ms;
-}
-.oxford-preloader-svg svg path:nth-child(5n) {
-  animation-delay: 250ms;
-}
-.oxford-preloader-svg svg path:nth-child(7n) {
-  animation-delay: 375ms;
-}
-.oxford-preloader-svg svg path:nth-child(11n) {
-  animation-delay: 500ms;
-}
-.oxford-preloader-svg svg path:nth-child(13n) {
-  animation-delay: 620ms;
-}
-.oxford-preloader-svg svg path:nth-child(17n) {
-  animation-delay: 750ms;
 }
 
 
