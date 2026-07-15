@@ -68,23 +68,39 @@ export default function App() {
   // Track active section on scroll to update Navbar indicators
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "academics", "campus", "why-choose", "students", "faculties", "achievements", "admissions", "announcements", "calendar", "chat", "contact"];
-      const scrollPosition = window.scrollY + 180;
+      const sections = [
+        { id: "home", navId: "home" },
+        { id: "about", navId: "about" },
+        { id: "stats", navId: "about" },
+        { id: "why-choose", navId: "about" },
+        { id: "academics", navId: "academics" },
+        { id: "campus", navId: "academics" },
+        { id: "students", navId: "academics" },
+        { id: "faculties", navId: "academics" },
+        { id: "achievements", navId: "academics" },
+        { id: "admissions", navId: "admissions" },
+        { id: "announcements", navId: "announcements" },
+        { id: "calendar", navId: "calendar" },
+        { id: "chat", navId: "chat" },
+        { id: "contact", navId: "contact" }
+      ];
+      
+      const scrollPosition = window.scrollY + 220; // safe buffer for nav header height
 
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
+      for (const section of sections) {
+        const el = document.getElementById(section.id);
         if (el) {
           const top = el.offsetTop;
           const height = el.offsetHeight;
           if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(sectionId);
+            setActiveSection(section.navId);
             break;
           }
         }
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -214,47 +230,47 @@ export default function App() {
         />
 
         {/* About Section */}
-        <ScrollReveal>
+        <ScrollReveal preset="slide-up" duration={0.8}>
           <AboutSection />
         </ScrollReveal>
 
         {/* Statistics subsection */}
-        <ScrollReveal>
+        <ScrollReveal preset="scale" duration={0.7} delay={0.1}>
           <SchoolStats />
         </ScrollReveal>
 
         {/* Academics Showcase */}
-        <ScrollReveal>
+        <ScrollReveal preset="slide-up" duration={0.8}>
           <Academics />
         </ScrollReveal>
 
         {/* Campus Life and Facilities */}
-        <ScrollReveal>
+        <ScrollReveal preset="slide-up" duration={0.8}>
           <CampusLife />
         </ScrollReveal>
 
         {/* Why Choose Us */}
-        <ScrollReveal>
+        <ScrollReveal preset="slide-up" duration={0.8}>
           <WhyChooseUs />
         </ScrollReveal>
 
         {/* Student Showcase */}
-        <ScrollReveal>
+        <ScrollReveal preset="scale" duration={0.7}>
           <StudentShowcase />
         </ScrollReveal>
 
         {/* Top Faculties */}
-        <ScrollReveal>
+        <ScrollReveal preset="slide-up" duration={0.8}>
           <TopFaculties />
         </ScrollReveal>
 
         {/* Achievements Stack */}
-        <ScrollReveal>
+        <ScrollReveal preset="slide-up" duration={0.8}>
           <AchievementsStack />
         </ScrollReveal>
 
         {/* Admissions, Estimator, and application Submission */}
-        <ScrollReveal>
+        <ScrollReveal preset="slide-up" duration={0.8}>
           <Admissions
             applications={applications}
             onSubmitApplication={handleAddApplication}
@@ -263,7 +279,7 @@ export default function App() {
         </ScrollReveal>
 
         {/* Application Live Tracker Monitoring Dashboard */}
-        <ScrollReveal>
+        <ScrollReveal preset="slide-up" duration={0.8}>
           <section className="py-12 bg-white border-y border-slate-100">
             <div className="max-w-7xl mx-auto px-6">
               
@@ -380,7 +396,7 @@ export default function App() {
         </ScrollReveal>
 
         {/* AI Counselor Live Panel */}
-        <ScrollReveal>
+        <ScrollReveal preset="slide-up" duration={0.8}>
           <AICounselor
             messages={chatMessages}
             onSendMessage={handleSendMessage}
@@ -389,17 +405,17 @@ export default function App() {
         </ScrollReveal>
 
         {/* Announcements notice board */}
-        <ScrollReveal>
+        <ScrollReveal preset="slide-up" duration={0.8}>
           <Announcements />
         </ScrollReveal>
 
         {/* Interactive Campus Events Calendar */}
-        <ScrollReveal>
+        <ScrollReveal preset="slide-up" duration={0.8}>
           <EventsCalendar />
         </ScrollReveal>
 
         {/* Professional Contact Section */}
-        <ScrollReveal>
+        <ScrollReveal preset="slide-up" duration={0.8}>
           <ContactSection />
         </ScrollReveal>
 
