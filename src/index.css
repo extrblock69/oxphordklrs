@@ -113,15 +113,5 @@
   display: block;
 }
 
-.oxford-preloader-svg svg path {
-  opacity: 0;
-  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-  will-change: opacity;
-}
-
-.oxford-preloader-svg.active svg path {
-  opacity: 1;
-}
-
 
 

@@ -240,7 +240,7 @@ export default function App() {
         <motion.div
           key="preloader"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }}
+          exit={{ opacity: 0, transition: { duration: 1.6, ease: [0.16, 1, 0.3, 1] } }}
           className="fixed inset-0 z-50 pointer-events-auto"
         >
           <Preloader onComplete={() => setLoading(false)} />
@@ -250,7 +250,7 @@ export default function App() {
           key="main-app"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
           className="min-h-screen bg-slate-50 text-slate-800 selection:bg-blue-900 selection:text-white antialiased transition-colors duration-200"
         >
       
